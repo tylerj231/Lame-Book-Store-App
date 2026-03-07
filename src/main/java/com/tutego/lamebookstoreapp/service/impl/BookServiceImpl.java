@@ -22,7 +22,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> readAll() {
+    public List<Book> findAll() {
         return bookRepository.findAll();
     }
 }
