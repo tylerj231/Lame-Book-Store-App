@@ -1,11 +1,14 @@
 package com.tutego.lamebookstoreapp.service;
 
-import com.tutego.lamebookstoreapp.model.Book;
+import com.tutego.lamebookstoreapp.dto.BookDto;
+import com.tutego.lamebookstoreapp.dto.CreateBookRequestDto;
 import java.util.List;
 
 public interface BookService {
-    Book save(Book book);
+    BookDto save(CreateBookRequestDto bookRequestDto);
 
-    List<Book> findAll();
+    List<BookDto> findAll();
+
+    BookDto findById(Long id);
 
 }
