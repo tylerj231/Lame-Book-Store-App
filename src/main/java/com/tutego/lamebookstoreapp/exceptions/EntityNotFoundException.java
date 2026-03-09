@@ -1,9 +1,8 @@
 package com.tutego.lamebookstoreapp.exceptions;
 
-public class EntityNotFoundException extends jakarta.persistence.EntityNotFoundException {
-    private final String message;
+public class EntityNotFoundException extends RuntimeException {
 
     public EntityNotFoundException(String message) {
-        this.message = message;
+        super(message);
     }
 }
