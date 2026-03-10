@@ -8,12 +8,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @Entity
 @Table(name = "books")
 public class Book {
@@ -33,10 +31,8 @@ public class Book {
     @Column(nullable = false)
     private BigDecimal price;
 
-    @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false)
     private String coverImage;
 
 }
