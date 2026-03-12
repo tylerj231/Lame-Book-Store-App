@@ -2,6 +2,7 @@ package com.tutego.lamebookstoreapp.service.impl;
 
 import com.tutego.lamebookstoreapp.dto.BookDto;
 import com.tutego.lamebookstoreapp.dto.CreateBookRequestDto;
+import com.tutego.lamebookstoreapp.dto.UpdateBookRequestDto;
 import com.tutego.lamebookstoreapp.dto.mappers.BookMapper;
 import com.tutego.lamebookstoreapp.exceptions.EntityNotFoundException;
 import com.tutego.lamebookstoreapp.model.Book;
@@ -24,6 +25,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public void updateById(UpdateBookRequestDto updateBookRequestDto) {
+        Book book = bookMapper.toBook(updateBookRequestDto);
+        bookRepository.save(book);
+    }
+
+    @Override
     public List<BookDto> findAll() {
         return bookRepository.findAll()
                 .stream()
@@ -36,5 +43,15 @@ public class BookServiceImpl implements BookService {
         Book book = bookRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("Can't find a book by following id: " + id));
         return bookMapper.toDto(book);
+    }
+
+    @Override
+    public BookDto findByTitle(String title) {
+        return bookMapper.toDto(bookRepository.findByTitleContainsIgnoreCase(title));
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        bookRepository.deleteById(id);
     }
 }

@@ -2,16 +2,20 @@ package com.tutego.lamebookstoreapp.controller;
 
 import com.tutego.lamebookstoreapp.dto.BookDto;
 import com.tutego.lamebookstoreapp.dto.CreateBookRequestDto;
+import com.tutego.lamebookstoreapp.dto.UpdateBookRequestDto;
 import com.tutego.lamebookstoreapp.dto.mappers.BookMapper;
 import com.tutego.lamebookstoreapp.service.impl.BookServiceImpl;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +32,13 @@ public class BookController {
         return bookService.save(bookRequestDto);
     }
 
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateBook(@PathVariable Long id, @RequestBody UpdateBookRequestDto bookUpdateDto) {
+        bookUpdateDto.setId(id);
+        bookService.updateById(bookUpdateDto);
+    }
+
     @GetMapping
     public List<BookDto> getAll() {
         return bookService.findAll();
@@ -37,4 +48,16 @@ public class BookController {
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.findById(id);
     }
+
+    @GetMapping("/by-title/")
+    public BookDto getBookByTitle(@RequestParam(name = "title", required = false) String title) {
+        return bookService.findByTitle(title);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Long id) {
+        bookService.deleteById(id);
+    }
+
 }
