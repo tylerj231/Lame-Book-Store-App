@@ -9,5 +9,4 @@ public class LameBookStoreAppApplication {
     public static void main(String[] args) {
         SpringApplication.run(LameBookStoreAppApplication.class, args);
     }
-
 }
