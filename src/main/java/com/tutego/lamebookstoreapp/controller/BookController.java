@@ -1,6 +1,7 @@
 package com.tutego.lamebookstoreapp.controller;
 
 import com.tutego.lamebookstoreapp.dto.BookDto;
+import com.tutego.lamebookstoreapp.dto.BookSearchParameters;
 import com.tutego.lamebookstoreapp.dto.CreateBookRequestDto;
 import com.tutego.lamebookstoreapp.dto.UpdateBookRequestDto;
 import com.tutego.lamebookstoreapp.dto.mappers.BookMapper;
@@ -49,9 +50,14 @@ public class BookController {
         return bookService.findById(id);
     }
 
-    @GetMapping("/by-title/")
+    @GetMapping("/by-title")
     public BookDto getBookByTitle(@RequestParam(name = "title", required = false) String title) {
         return bookService.findByTitle(title);
+    }
+
+    @GetMapping("/search")
+    public List<BookDto> search(BookSearchParameters searchParams) {
+        return bookService.search(searchParams);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
