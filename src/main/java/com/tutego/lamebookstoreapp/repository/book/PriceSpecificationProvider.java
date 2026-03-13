@@ -6,7 +6,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import java.util.Arrays;
+import java.util.List;
 import org.jspecify.annotations.Nullable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ public class PriceSpecificationProvider implements SpecificationProvider<Book> {
         return "price";
     }
 
-    public Specification<Book> getSpecification(String [] params) {
+    public Specification<Book> getSpecification(List<String> params) {
         return new Specification<Book>() {
             @Override
             public @Nullable Predicate toPredicate(
@@ -26,7 +26,7 @@ public class PriceSpecificationProvider implements SpecificationProvider<Book> {
                     CriteriaQuery<?> query,
                     CriteriaBuilder criteriaBuilder
             ) {
-                return root.get("price").in(Arrays.stream(params).toArray());
+                return root.get("author").in(params.stream());
             }
         };
     }

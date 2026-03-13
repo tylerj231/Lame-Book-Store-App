@@ -1,11 +1,13 @@
 package com.tutego.lamebookstoreapp.dto;
 
+import java.util.List;
+
 public record BookSearchParameters(
-        String [] titles,
-        String [] authors,
-        String [] description,
-        String [] isbns,
-        String [] prices
+        List<String> titles,
+        List<String> authors,
+        List<String> description,
+        List<String> isbns,
+        List<String> prices
 ) {
 
 }
