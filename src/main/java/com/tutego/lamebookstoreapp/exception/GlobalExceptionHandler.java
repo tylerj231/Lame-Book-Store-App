@@ -34,6 +34,12 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>("Could not find requested entity", HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(RegistrationException.class)
+    public ResponseEntity<String> handleRegistrationException(RegistrationException ex) {
+        String message = "Could not register user: " + ex.getMessage();
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    }
+
     private String extractErrorMessage(ObjectError error) {
         if (error instanceof FieldError fieldError) {
             String field = fieldError.getField();
