@@ -8,7 +8,7 @@ import java.util.List;
 public interface BookService {
     BookDto save(CreateBookRequestDto bookRequestDto);
 
-    void update(CreateBookRequestDto bookRequestDto);
+    BookDto update(CreateBookRequestDto bookRequestDto);
 
     List<BookDto> findAll();
 

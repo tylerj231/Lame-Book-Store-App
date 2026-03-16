@@ -34,8 +34,8 @@ public class BookController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateBook(@RequestBody @Valid CreateBookRequestDto bookRequestDto) {
-        bookService.update(bookRequestDto);
+    public BookDto updateBook(@RequestBody @Valid CreateBookRequestDto bookRequestDto) {
+        return bookService.update(bookRequestDto);
     }
 
     @GetMapping
