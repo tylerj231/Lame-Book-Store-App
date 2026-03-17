@@ -36,9 +36,9 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Page<BookDto> findAll(Pageable pageable) {
-       return bookRepository.findAll(pageable).map(bookMapper::toDto);
+        return bookRepository.findAll(pageable)
+                .map(bookMapper::toDto);
     }
-
 
     @Override
     public BookDto findById(Long id) throws EntityNotFoundException {
