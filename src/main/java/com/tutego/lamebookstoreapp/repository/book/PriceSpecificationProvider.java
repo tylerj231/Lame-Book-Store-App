@@ -13,9 +13,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PriceSpecificationProvider implements SpecificationProvider<Book> {
+    private static final String PRICE = "price";
     @Override
     public String getKey() {
-        return "price";
+        return PRICE;
     }
 
     public Specification<Book> getSpecification(List<String> params) {
@@ -26,7 +27,7 @@ public class PriceSpecificationProvider implements SpecificationProvider<Book> {
                     CriteriaQuery<?> query,
                     CriteriaBuilder criteriaBuilder
             ) {
-                return root.get("author").in(params.stream());
+                return root.get(PRICE).in(params.stream());
             }
         };
     }

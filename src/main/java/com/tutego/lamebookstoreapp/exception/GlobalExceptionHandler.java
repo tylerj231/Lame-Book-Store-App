@@ -20,7 +20,6 @@ public class GlobalExceptionHandler {
             MethodArgumentNotValidException ex
     ) {
         Map<String, Object> body = new LinkedHashMap<>();
-        body.put("status", HttpStatus.BAD_REQUEST);
         body.put("timestamp", LocalDateTime.now());
         List<String> errors = ex.getBindingResult().getAllErrors().stream()
                 .map(this::extractErrorMessage)
@@ -31,7 +30,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<String> handleEntityNotFoundException(EntityNotFoundException ex) {
-        return new ResponseEntity<>("Could not find requested entity", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Could not find requested entity", HttpStatus.NOT_FOUND);
     }
 
     private String extractErrorMessage(ObjectError error) {

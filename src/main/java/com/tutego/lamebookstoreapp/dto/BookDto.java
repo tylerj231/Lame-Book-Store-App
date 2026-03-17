@@ -12,19 +12,17 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class BookDto {
-    @NotNull
     private Long id;
-    @NotBlank
+
     private String title;
-    @NotBlank
+
     private String author;
-    @NotBlank
+
     private String isbn;
-    @NotNull
-    @Min(0)
+
     private BigDecimal price;
-    @NotBlank
+
     private String description;
-    @NotBlank
+
     private String coverImage;
 }
