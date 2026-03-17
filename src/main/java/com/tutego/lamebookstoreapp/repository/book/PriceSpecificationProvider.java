@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PriceSpecificationProvider implements SpecificationProvider<Book> {
     private static final String PRICE = "price";
+
     @Override
     public String getKey() {
         return PRICE;

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DescriptionSpecificationProvider implements SpecificationProvider<Book> {
     private static final String DESCRIPTION = "description";
+
     @Override
     public String getKey() {
         return DESCRIPTION;
