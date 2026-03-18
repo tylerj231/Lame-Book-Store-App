@@ -5,6 +5,7 @@ import com.tutego.lamebookstoreapp.dto.BookSearchParameters;
 import com.tutego.lamebookstoreapp.dto.CreateBookRequestDto;
 import com.tutego.lamebookstoreapp.dto.mappers.BookMapper;
 import com.tutego.lamebookstoreapp.service.impl.BookServiceImpl;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,14 +28,14 @@ public class BookController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public BookDto createBook(@RequestBody CreateBookRequestDto bookRequestDto) {
+    public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookRequestDto) {
         return bookService.save(bookRequestDto);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateBook(@RequestBody CreateBookRequestDto bookRequestDto) {
-        bookService.update(bookRequestDto);
+    public BookDto updateBook(@RequestBody @Valid CreateBookRequestDto bookRequestDto) {
+        return bookService.update(bookRequestDto);
     }
 
     @GetMapping
