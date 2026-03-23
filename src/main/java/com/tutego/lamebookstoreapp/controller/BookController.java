@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,7 @@ public class BookController {
     private final BookServiceImpl bookService;
     private final BookMapper bookMapper;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(
@@ -41,6 +43,7 @@ public class BookController {
         return bookService.save(bookRequestDto);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(
@@ -51,6 +54,7 @@ public class BookController {
         return bookService.update(bookRequestDto);
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping
     @Operation(
             summary = "Retrieves all books",
@@ -60,6 +64,7 @@ public class BookController {
         return bookService.findAll(pageable);
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/{id}")
     @Operation(
             summary = "Get book by id",
@@ -69,6 +74,7 @@ public class BookController {
         return bookService.findById(id);
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/search")
     @Operation(
             summary = "Filter books by specific criteria",
@@ -78,6 +84,7 @@ public class BookController {
         return bookService.search(searchParams);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     @Operation(
