@@ -1,5 +1,4 @@
 databaseChangeLog:
-
   - changeSet:
       id: 07-create-categories-table
       author: jacktyler
@@ -23,9 +22,7 @@ databaseChangeLog:
               - column:
                   name: description
                   type: VARCHAR(255)
-                  constraints:
-                    nullable: false
-                    unique: true
+
               - column:
                   name: is_deleted
                   type: boolean

@@ -2,6 +2,8 @@ package com.tutego.lamebookstoreapp.controller;
 
 import com.tutego.lamebookstoreapp.dto.BookDtoWithoutCategoryIds;
 import com.tutego.lamebookstoreapp.dto.CategoryDto;
+import com.tutego.lamebookstoreapp.dto.CreateCategoryDto;
+import com.tutego.lamebookstoreapp.dto.UpdateCategoryDto;
 import com.tutego.lamebookstoreapp.dto.mappers.BookMapper;
 import com.tutego.lamebookstoreapp.model.Book;
 import com.tutego.lamebookstoreapp.repository.BookRepository;
@@ -44,8 +46,8 @@ public class CategoryController {
             summary = "Create new category for book/books",
             description = "Endpoint to create a new category for book/books"
     )
-    public CategoryDto createCategory(@RequestBody @Valid CategoryDto categoryDto) {
-        return categoryService.save(categoryDto);
+    public CategoryDto createCategory(@RequestBody @Valid CreateCategoryDto createCategoryRequest) {
+        return categoryService.save(createCategoryRequest);
     }
 
     @PreAuthorize("hasRole('USER')")
@@ -89,8 +91,8 @@ public class CategoryController {
             summary = "Update specific category",
             description = "Endpoint to update specific category"
     )
-    public CategoryDto updateCategory(@RequestBody @Valid CategoryDto categoryDto) {
-        return categoryService.update(categoryDto);
+    public CategoryDto updateCategory(@RequestBody @Valid UpdateCategoryDto updateCategoryDto) {
+        return categoryService.update(updateCategoryDto);
     }
 
     @PreAuthorize("hasRole('ADMIN')")

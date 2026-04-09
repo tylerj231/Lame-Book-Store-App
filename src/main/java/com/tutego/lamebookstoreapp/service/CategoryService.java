@@ -1,6 +1,8 @@
 package com.tutego.lamebookstoreapp.service;
 
 import com.tutego.lamebookstoreapp.dto.CategoryDto;
+import com.tutego.lamebookstoreapp.dto.CreateCategoryDto;
+import com.tutego.lamebookstoreapp.dto.UpdateCategoryDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -9,9 +11,9 @@ public interface CategoryService {
 
     CategoryDto getById(Long id);
 
-    CategoryDto save(CategoryDto categoryRequestDto);
+    CategoryDto save(CreateCategoryDto categoryRequestDto);
 
-    CategoryDto update(CategoryDto categoryDto);
+    CategoryDto update(UpdateCategoryDto updateCategoryDto);
 
     void deleteById(Long id);
 }

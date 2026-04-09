@@ -1,6 +1,8 @@
 package com.tutego.lamebookstoreapp.service.impl;
 
 import com.tutego.lamebookstoreapp.dto.CategoryDto;
+import com.tutego.lamebookstoreapp.dto.CreateCategoryDto;
+import com.tutego.lamebookstoreapp.dto.UpdateCategoryDto;
 import com.tutego.lamebookstoreapp.dto.mappers.CategoryMapper;
 import com.tutego.lamebookstoreapp.exception.EntityNotFoundException;
 import com.tutego.lamebookstoreapp.model.Category;
@@ -31,18 +33,20 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryDto save(CategoryDto categoryRequestDto) {
+    public CategoryDto save(CreateCategoryDto categoryRequestDto) {
         Category category = categoryRepository.save(categoryMapper.toEntity(categoryRequestDto));
         return categoryMapper.toDto(category);
     }
 
     @Override
-    public CategoryDto update(CategoryDto categoryDto) {
-        return categoryMapper.toDto(categoryRepository.save(categoryMapper.toEntity(categoryDto)));
+    public void deleteById(Long id) {
+        categoryRepository.deleteById(id);
     }
 
     @Override
-    public void deleteById(Long id) {
-        categoryRepository.deleteById(id);
+    public CategoryDto update(UpdateCategoryDto updateCategoryDto) {
+        return categoryMapper.toDto(
+                categoryRepository.save(categoryMapper.toEntity(updateCategoryDto))
+        );
     }
 }
