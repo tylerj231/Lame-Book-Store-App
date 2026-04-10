@@ -1,6 +1,5 @@
 package com.tutego.lamebookstoreapp.dto;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
