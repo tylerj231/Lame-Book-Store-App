@@ -1,6 +1,7 @@
 package com.tutego.lamebookstoreapp.service;
 
 import com.tutego.lamebookstoreapp.dto.BookDto;
+import com.tutego.lamebookstoreapp.dto.BookDtoWithoutCategoryIds;
 import com.tutego.lamebookstoreapp.dto.BookSearchParameters;
 import com.tutego.lamebookstoreapp.dto.CreateBookRequestDto;
 import java.util.List;
@@ -15,6 +16,8 @@ public interface BookService {
     Page<BookDto> findAll(Pageable pageable);
 
     BookDto findById(Long id);
+
+    List<BookDtoWithoutCategoryIds> getBooksByCategoryId(Long id);
 
     void deleteById(Long id);
 

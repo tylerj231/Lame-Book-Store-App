@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: 08-create-categories
+      author: tylerjack
+      changes:
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: fiction
+              - column:
+                  name: description
+                  value: Fiction books
+              - column:
+                  name: is_deleted
+                  value: "False"
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: science
+              - column:
+                  name: description
+                  value: Science books
+              - column:
+                  name: is_deleted
+                  value: "False"
+        - insert:
+            tableName: categories
+            columns:
+              - column:
+                  name: name
+                  value: romance
+              - column:
+                  name: description
+                  value: Romance books
+              - column:
+                  name: is_deleted
+                  value: "False"

@@ -1,7 +1,6 @@
 package com.tutego.lamebookstoreapp.dto;
 
 import java.math.BigDecimal;
-import java.util.Set;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BookDto {
+public class BookDtoWithoutCategoryIds {
     private Long id;
 
     private String title;
@@ -23,6 +22,4 @@ public class BookDto {
     private String description;
 
     private String coverImage;
-
-    private Set<Long> categoryIds;
 }

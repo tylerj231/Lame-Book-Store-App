@@ -3,6 +3,7 @@ package com.tutego.lamebookstoreapp.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
+import java.util.Set;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,4 +24,6 @@ public class CreateBookRequestDto {
     private String description;
     @NotBlank
     private String coverImage;
+
+    private Set<Long> categoryIds;
 }
