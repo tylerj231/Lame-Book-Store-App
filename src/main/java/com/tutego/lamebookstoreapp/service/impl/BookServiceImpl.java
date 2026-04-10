@@ -1,6 +1,7 @@
 package com.tutego.lamebookstoreapp.service.impl;
 
 import com.tutego.lamebookstoreapp.dto.BookDto;
+import com.tutego.lamebookstoreapp.dto.BookDtoWithoutCategoryIds;
 import com.tutego.lamebookstoreapp.dto.BookSearchParameters;
 import com.tutego.lamebookstoreapp.dto.CreateBookRequestDto;
 import com.tutego.lamebookstoreapp.dto.mappers.BookMapper;
@@ -45,6 +46,12 @@ public class BookServiceImpl implements BookService {
         Book book = bookRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("Can't find a book by following id: " + id));
         return bookMapper.toDto(book);
+    }
+
+    @Override
+    public List<BookDtoWithoutCategoryIds> getBooksByCategoryId(Long id) {
+        List<Book> books = bookRepository.findAllByCategoriesId(id);
+        return books.stream().map(bookMapper::toDtoWithoutCategories).toList();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.tutego.lamebookstoreapp.controller;
 
 import com.tutego.lamebookstoreapp.dto.BookDto;
+import com.tutego.lamebookstoreapp.dto.BookDtoWithoutCategoryIds;
 import com.tutego.lamebookstoreapp.dto.BookSearchParameters;
 import com.tutego.lamebookstoreapp.dto.CreateBookRequestDto;
 import com.tutego.lamebookstoreapp.dto.mappers.BookMapper;
@@ -72,6 +73,16 @@ public class BookController {
     )
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.findById(id);
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/without-categories/{id}")
+    @Operation(
+            summary = "Retrieve books without categories.",
+            description = "Endpoint to retrieve books without categories."
+    )
+    public List<BookDtoWithoutCategoryIds> getBookWithoutCategories(Long id) {
+        return bookService.getBooksByCategoryId(id);
     }
 
     @PreAuthorize("hasRole('USER')")

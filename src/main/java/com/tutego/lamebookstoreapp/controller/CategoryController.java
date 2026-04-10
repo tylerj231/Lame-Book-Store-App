@@ -1,17 +1,14 @@
 package com.tutego.lamebookstoreapp.controller;
 
-import com.tutego.lamebookstoreapp.dto.BookDtoWithoutCategoryIds;
 import com.tutego.lamebookstoreapp.dto.CategoryDto;
 import com.tutego.lamebookstoreapp.dto.CreateCategoryDto;
 import com.tutego.lamebookstoreapp.dto.UpdateCategoryDto;
 import com.tutego.lamebookstoreapp.dto.mappers.BookMapper;
-import com.tutego.lamebookstoreapp.model.Book;
 import com.tutego.lamebookstoreapp.repository.BookRepository;
 import com.tutego.lamebookstoreapp.service.impl.CategoryServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -70,18 +67,6 @@ public class CategoryController {
     )
     public CategoryDto getCategoryById(@PathVariable Long id) {
         return categoryService.getById(id);
-    }
-
-    @PreAuthorize("hasRole('USER')")
-    @GetMapping("/{id}/books")
-    @ResponseStatus(HttpStatus.OK)
-    @Operation(
-            summary = "Retrieve specific  book by category id",
-            description = "Endpoint to retrieve specific book by category id"
-    )
-    public List<BookDtoWithoutCategoryIds> getBooksByCategoryId(Long id) {
-        List<Book> books = bookRepository.findAllByCategoriesId(id);
-        return books.stream().map(bookMapper::toDtoWithoutCategories).toList();
     }
 
     @PreAuthorize("hasRole('ADMIN')")
